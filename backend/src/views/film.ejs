@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Film</title>
+    <link rel="stylesheet" href="/css/film.css">
+</head>
+<body>
+
+    <ul>
+        <li><a class="active" href="/film">Film</a></li>
+        <li><a href="/showtime">Showtime</a></li>
+    </ul>
+
+    <form action="film/post" method="post">
+        <label for="title">title:</label>
+        <input type="text" name="title" id="title"><br>
+        <label for="description">description:</label>
+        <input type="text" name="description" id="description"><br>
+        <label for="release_date">release date:</label>
+        <input type="date" name="release_date" id="release_date"><br>
+        <label for="language_id">language id:</label>
+        <input type="number" name="language_id" id="language_id"><br>
+        <label for="director">director:</label>
+        <input type="text" name="director" id="director"><br>
+        <label for="actor">actor:</label>
+        <input type="text" name="actor" id="actor"><br>
+        <label for="length">length:</label>
+        <input type="number" name="length" id="length"><br>
+        <label for="classify_id">classify id:</label>
+        <input type="number" name="classify_id" id="classify_id"><br>
+        <input type="submit" value="enter">
+    </form>
+
+    <h2>List films</h2>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+        <% for (var i=0; i<films.length; i++) { %>
+        <tr>
+            <td><%= films[i].film_id %></td>
+            <td><%= films[i].title %></td>
+            <td>
+                <form action="/edit/<%= films[i].film_id %>" method="get">
+                    <button>Edit</button>
+                </form>
+                <form action="/film/delete/<%= films[i].film_id %>" method="post">
+                    <button>Delete</button>
+                </form>
+            </td>
+        </tr>
+        <% } %>
+    </table>
+
+</body>
+</html>
